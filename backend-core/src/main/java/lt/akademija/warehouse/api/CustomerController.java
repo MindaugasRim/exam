@@ -36,6 +36,18 @@ public class CustomerController {
         return customerService.getAllCustomerInformation();
     }
 
+    @GetMapping("/order")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Customer> getStatisticsByOrders() {
+        return customerService.getStatisticsByOrders();
+    }
+
+    @GetMapping("/weight")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Customer> getStatisticsByWeight() {
+        return customerService.getStatisticsByWeight();
+    }
+
 
 
 }

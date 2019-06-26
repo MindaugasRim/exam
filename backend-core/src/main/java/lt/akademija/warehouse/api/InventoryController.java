@@ -30,4 +30,10 @@ public class InventoryController {
         return inventoryService.getAllInventory();
     }
 
+    @GetMapping("/weight")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Inventory> getInventoryByWeight() {
+        return inventoryService.getInventoryByWeight();
+    }
+
 }

@@ -31,4 +31,11 @@ public class CustomerService {
         return customerMapper.getAllCustomerInformation();
     }
 
+    public List<Customer> getStatisticsByOrders() {
+        return customerMapper.getStatisticsByOrders();
+    }
+
+    public List<Customer> getStatisticsByWeight() {
+        return customerMapper.getStatisticsByWeight();
+    }
 }

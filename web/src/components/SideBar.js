@@ -66,6 +66,10 @@ class TemporaryDrawer extends Component {
               <ListItemIcon>{ <LocationCity/>}</ListItemIcon>
               <ListItemText>{ "New Inventory registration"}</ListItemText>
             </ListItem>
+            <ListItem button component={Link} to="/reports">
+              <ListItemIcon>{ <LocationCity/>}</ListItemIcon>
+              <ListItemText>{ "Reports"}</ListItemText>
+            </ListItem>
         </List>
 
       </div>

@@ -29,4 +29,8 @@ public class InventoryService {
         return inventoryMapper.getAllInventory();
     }
 
+    public List<Inventory> getInventoryByWeight() {
+        return inventoryMapper.getInventoryByWeight();
+    }
+
 }

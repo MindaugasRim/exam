@@ -15,4 +15,11 @@ public interface InventoryMapper {
     @SelectKey(statement = "SELECT nextval('inventory_seq_id')", keyProperty = "inventory.id", before = true, resultType = int.class)
     void addInventory(@Param("inventory") Inventory inventory);
 
+    @Select(" SELECT DISTINCT * from inventory\n" +
+            "    ORDER BY weight DESC\n" +
+            "    LIMIT 5")
+    List<Inventory> getInventoryByWeight();
+
+
+
 }

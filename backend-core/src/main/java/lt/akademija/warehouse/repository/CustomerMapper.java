@@ -24,6 +24,33 @@ public interface CustomerMapper {
             "                   ON customer.id = inventory.customer_id")
     List<Customer> getAllCustomerInformation();
 
+    @Select("SELECT DISTINCT customer.first_name, customer.last_name, (SELECT count(*) AS quantity\n" +
+            "    FROM inventory\n" +
+            "    WHERE customer_id = customer.id) as quantity\n" +
+            "FROM customer\n" +
+            "    LEFT JOIN inventory\n" +
+            "ON customer.id = inventory.customer_id\n" +
+            "ORDER BY quantity DESC\n" +
+            "LIMIT 5")
+    List<Customer> getStatisticsByOrders();
+
+    @Select("SELECT DISTINCT customer.first_name, customer.last_name, (SELECT SUM(weight) AS quantity\n" +
+            "    FROM inventory\n" +
+            "    WHERE customer_id = customer.id) as quantity\n" +
+            "FROM customer\n" +
+            "    LEFT JOIN inventory\n" +
+            "ON customer.id = inventory.customer_id\n" +
+            "ORDER BY quantity DESC\n" +
+            "LIMIT 5")
+    List<Customer> getStatisticsByWeight();
+
+
+
+
+
+
+
+
 //
 //    @Delete("DELETE FROM book")
 //    void deleteAllBooks();
