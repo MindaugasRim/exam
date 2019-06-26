@@ -189,9 +189,9 @@ export class BookList extends Component {
                     {customer.lastName}
                     </TableCell>
                     <TableCell >
-                    {!customer.clientTypeStatus ?  <div className="bcgr fi"> 
+                    {!customer.clientTypeStatus ?  <div > 
                     {"Casual"} </div>  : 
-                    <div > 
+                    <div className="bcgr fi"> 
                     {"Loyal"} </div>   }
                     </TableCell>
                     <TableCell >

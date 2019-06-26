@@ -11,7 +11,7 @@ public interface InventoryMapper {
     @Select("SELECT * FROM inventory")
     List<Inventory> getAllInventory();
 
-    @Insert("INSERT INTO inventory (id, name, weight, sector_number, place_date) VALUES (#{inventory.id}, #{inventory.name}, #{inventory.weight}, #{inventory.sectorNumber}, #{inventory.placeDate})")
+    @Insert("INSERT INTO inventory (id, name, weight, sector_number, place_date, customer_id) VALUES (#{inventory.id}, #{inventory.name}, #{inventory.weight}, #{inventory.sectorNumber}, #{inventory.placeDate}, #{inventory.customerId})")
     @SelectKey(statement = "SELECT nextval('inventory_seq_id')", keyProperty = "inventory.id", before = true, resultType = int.class)
     void addInventory(@Param("inventory") Inventory inventory);
 

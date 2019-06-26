@@ -100,6 +100,7 @@ export default class AddInventory extends Component {
       weight: this.state.weight, 
       sectorNumber: this.state.sectorNumber, 
       placeDate: this.state.placeDate, 
+      customerId: this.state.customerId, 
     })
       .then(res => {
         console.log(res);
@@ -177,6 +178,30 @@ export default class AddInventory extends Component {
                   />
               </FormControl>
             </div>
+            <div className= "tm20 pl20 pr20 pb20"> 
+              <FormControl className= "w25p">
+                <InputLabel >Customer</InputLabel>
+                  <Select
+                    native
+                    onChange={this.handleChange}
+                    inputProps={{
+                    name: 'customerId'
+                    }}    
+                  >
+                    <option value={""}></option>
+                    {this.state.customers
+                    
+                    .map(customer => (
+                    <option key = {customer.id} value={customer.id}> {customer.firstName} {customer.lastName}</option>
+                    ))
+                    
+                    
+                    }
+
+                  </Select>
+              </FormControl>
+            </div>
+
 
             <div className= "tm20 pl20 pr20 pb20"> 
             <Button variant="contained" color="primary" onClick={this.handleAddInventory} >

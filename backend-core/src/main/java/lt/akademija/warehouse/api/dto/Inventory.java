@@ -11,4 +11,5 @@ public class Inventory {
     private int weight;
     private int sectorNumber;
     private LocalDate placeDate;
+    private int customerId;
 }

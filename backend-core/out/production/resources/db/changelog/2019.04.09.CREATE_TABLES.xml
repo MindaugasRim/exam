@@ -48,6 +48,9 @@
             <column name="place_date" type="date">
                 <constraints nullable="false"/>
             </column>
+            <column name="customer_id" type="int">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <createTable tableName="book">
@@ -129,6 +132,13 @@
                 constraintName="fk_location_book_location_id"
                 referencedColumnNames="id"
                 referencedTableName="location"/>
+        <addForeignKeyConstraint
+                baseColumnNames="customer_id"
+                baseTableName="inventory"
+                constraintName="fk_customer_inventory_customer_id"
+                referencedColumnNames="id"
+                referencedTableName="customer"/>
+
         <addUniqueConstraint
                 columnNames="loc_name"
                 constraintName="uq_location_loc_name"
