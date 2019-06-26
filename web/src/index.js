@@ -10,6 +10,7 @@ import BooksContainer from "./components/books/BooksContainer";
 import EditBooksContainer from './components/administration//editbooks/EditBooksContainer';
 import EditLocationsContainer from './components/administration/editlocations/EditLocationsContainer';
 import AddCustomer from './components/administration/customers/AddCustomer';
+import AddInventory from './components/administration/inventory/AddInventory';
 
 ReactDOM.render(
 
@@ -20,6 +21,7 @@ ReactDOM.render(
           <Route exact path="/books" component={EditBooksContainer}/>
           <Route exact path="/locations" component={EditLocationsContainer}/>
           <Route exact path="/customers" component={AddCustomer}/>
+          <Route exact path="/inventory" component={AddInventory}/>
         </Switch>
       </App>
     </BrowserRouter>,
