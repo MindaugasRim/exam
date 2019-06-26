@@ -11,6 +11,8 @@ import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
+
 
 export default class AddInventory extends Component {
   
@@ -102,9 +104,11 @@ export default class AddInventory extends Component {
       .then(res => {
         console.log(res);
         console.log(res.data);
+        this.props.history.push("/");
       
       })
-      window.location.reload()
+
+      // window.location.reload()
   }
 
   render() {
@@ -175,7 +179,7 @@ export default class AddInventory extends Component {
             </div>
 
             <div className= "tm20 pl20 pr20 pb20"> 
-            <Button variant="contained" color="primary"  onClick={this.handleAddInventory}>
+            <Button variant="contained" color="primary" onClick={this.handleAddInventory} >
               register
             </Button>
  
