@@ -50,14 +50,6 @@ class TemporaryDrawer extends Component {
         <Divider />
 
         <List>
-            <ListItem button component={Link} to="/books">
-              <ListItemIcon>{ <LibraryBooksIcon/>}</ListItemIcon>
-              <ListItemText>{ "Create / Update books"}</ListItemText>
-            </ListItem>
-            <ListItem button component={Link} to="/locations">
-              <ListItemIcon>{ <LocationCity/>}</ListItemIcon>
-              <ListItemText>{ "Create / Update locations"}</ListItemText>
-            </ListItem>
             <ListItem button component={Link} to="/customers">
               <ListItemIcon>{ <LocationCity/>}</ListItemIcon>
               <ListItemText>{ "Add new Customer"}</ListItemText>

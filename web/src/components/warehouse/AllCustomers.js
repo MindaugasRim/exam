@@ -120,7 +120,7 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
   TablePaginationActions,
 );
 
-export class BookList extends Component {
+export class AllCustomers extends Component {
 
   state = {
     books: [],
@@ -146,12 +146,12 @@ export class BookList extends Component {
     
   }
 
-  handleReserveBook = (id) => {
-    axios.post(`http://localhost:8080/books/${id}/reserve`,  {customerId: 1 })
-    .then(res => { 
-      console.log(res);
-      window.location.reload()
-    });
+  // handleReserveBook = (id) => {
+  //   axios.post(`http://localhost:8080/books/${id}/reserve`,  {customerId: 1 })
+  //   .then(res => { 
+  //     console.log(res);
+  //     window.location.reload()
+  //   });
   };
 
 
@@ -354,4 +354,4 @@ export class BookList extends Component {
   }
 }
 
-export default BookList
+export default AllCustomers
