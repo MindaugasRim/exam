@@ -3,6 +3,7 @@ import { Container } from 'reactstrap';
 // import AllCustomers from './AllCustomers';
 import ReportsByOrders from './ReportsByOrders';
 import ReportsByWeight from './ReportsByWeight';
+import ReportsByInventoryOrders from './ReportsByInventoryOrders';
 import ReportsByInventoryWeight from './ReportsByInventoryWeight';
 
 export class ReportsContainer extends Component {
@@ -14,6 +15,7 @@ export class ReportsContainer extends Component {
         <ReportsByOrders/>
         <ReportsByWeight/>
         <ReportsByInventoryWeight/>
+        <ReportsByInventoryOrders/>
       </Container>
     )
   }

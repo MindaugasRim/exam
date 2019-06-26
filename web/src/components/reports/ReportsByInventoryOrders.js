@@ -50,6 +50,7 @@ export class BookList extends Component {
   
     customersByOrder: [],
     customersByWeight: [],
+    inventoryByWeight: [],
   };
 
 
@@ -66,13 +67,13 @@ export class BookList extends Component {
       this.setState({customers: res.data})
     });
 
-    axios.get("http://localhost:8080/customers/order")
+    axios.get("http://localhost:8080/inventory/order")
     .then(res => { 
       console.log(res);
-      this.setState({customersByOrder: res.data})
+      this.setState({inventoryByWeight: res.data})
     });
 
-  
+    
     
   }
 
@@ -106,29 +107,37 @@ export class BookList extends Component {
             <TableHead className="ts">
               <TableRow  className="ts"> 
                 <TableCell> <p className="ts">Name </p></TableCell>
-                <TableCell > <p className="ts">Surname </p></TableCell>
+                <TableCell > <p className="ts">weight </p></TableCell>
          
-                <TableCell > <p className="ts">Register Inventor (pcs.) </p> </TableCell>
+                <TableCell > <p className="ts">Sector number </p> </TableCell>
              
+                <TableCell > <p className="ts">Place Date </p> </TableCell>
+                <TableCell > <p className="ts">Order quantity (pcs.) </p> </TableCell>
               </TableRow>
               
             </TableHead>
          
             <TableBody>
-            {this.state.customersByOrder
+            {this.state.inventoryByWeight
  .map(customer => (
                 <TableRow key={customer.id}>
                     <TableCell >
-                    {customer.firstName}
+                    {customer.name}
                     </TableCell>
                     <TableCell >
-                    {customer.lastName}
+                    {customer.weight}
                     </TableCell>
                    
                     <TableCell >
+                    {customer.sectorNumber}
+                    </TableCell>
+                    <TableCell >
+                    {customer.placeDate}
+                    </TableCell>
+                    <TableCell >
                     {customer.quantity}
                     </TableCell>
-
+                  
 
 
                    

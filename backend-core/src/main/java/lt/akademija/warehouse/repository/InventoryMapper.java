@@ -20,6 +20,15 @@ public interface InventoryMapper {
             "    LIMIT 5")
     List<Inventory> getInventoryByWeight();
 
+    @Select(" SELECT name, weight, sector_number, place_date, COUNT(*) quantity\n" +
+            "FROM inventory\n" +
+            "GROUP BY name, weight, sector_number, place_date\n" +
+            "ORDER BY COUNT(*) DESC LIMIT 5")
+    List<Inventory> getInventoryByQuantity();
+
+
+
+
 
 
 }
