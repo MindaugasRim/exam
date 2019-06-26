@@ -1,0 +1,115 @@
+.tm20 {
+    margin-top: 20px;
+}
+
+.tm40 {
+    margin-top: 40px;
+}
+
+.bm80 {
+    margin-bottom: 80px;
+}
+
+.w100p{
+    width:100%;
+}
+
+.w50p{
+    width:50%;
+}
+
+.w25p{
+    width:25%;
+}
+
+.pt5 {
+    padding-top: 5px;
+}
+
+
+.pl20 {
+    padding-left: 16px;
+}
+
+.pr20{
+    padding-right: 16px;
+}
+
+.pb20{
+    padding-bottom: 16px;
+}
+
+.pb5{
+    padding-bottom: 5px;
+}
+
+.p0i {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.bcgr {
+    color: gray;
+    
+}
+
+.fi {
+    font-style: italic;
+    
+}
+
+.pb10 {
+    padding-bottom: 10px;
+}
+
+.pt10 {
+    padding-top: 10px;
+}
+
+.ts {
+    background-color: #f6feff;
+    font-size: 14px;
+    color: rgb(0, 188, 212);
+    margin: 0;
+    
+}
+
+.hs {
+     background-color: rgb(0, 188, 212);
+     font-size: 20px;
+     color: white;
+     padding: 5px;
+     margin: 0;
+     padding-left: 16px;
+     
+}
+
+.logo-info {
+    position: relative;
+    display: inline-block;
+  }
+
+  .logo-info .tooltiptext {
+    font-size: 10px;
+    visibility: hidden;
+    width: 200px;
+    background-color: black;
+    color: #fff !important;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    text-justify: inter-word;
+    opacity: 0.8;
+    font-weight: 600;
+    position: absolute;
+    z-index: 1;
+    transition: 0s ease;
+  }
+
+  .logo-info:hover .tooltiptext {
+    visibility: visible;
+  }
+  
+  .logo-info:hover .tooltiptext-statistics {
+    visibility: visible;
+  }

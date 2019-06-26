@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <changeSet author="mrimdzius" id="2019.04.09.CREATE_TABLES">
+        <comment>book, customer and reservation tables have been created</comment>
+        <createTable tableName="customer">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="client_type_status" type="boolean">
+            </column>
+
+
+            <!--            <column name="role" type="varchar(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+
+
+        </createTable>
+        <createTable tableName="inventory_registration">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weight" type="int">
+            </column>
+            <column name="sector_number" type="int">
+            </column>
+
+            <column name="place_date" type="date">
+            </column>
+
+
+        </createTable>
+
+
+
+        <createTable tableName="book">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author" type="varchar(255)">
+            </column>
+            <column name="publication_date" type="date">
+            </column>
+            <column name="location_id" type="int">
+            </column>
+            <column defaultValueBoolean="false" name="deleted_status" type="boolean">
+            </column>
+        </createTable>
+        <createTable tableName="location">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="loc_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="loc_deleted_status" type="boolean">
+            </column>
+        </createTable>
+        <createTable tableName="reservation">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="customer_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taken_date" type="date">
+            </column>
+            <column name="returned_date" type="date">
+            </column>
+        </createTable>
+        <createSequence
+                incrementBy="1"
+                sequenceName="book_seq_id"
+                startValue="1"/>
+        <createSequence
+                incrementBy="1"
+                sequenceName="reservation_seq_id"
+                startValue="1"/>
+        <createSequence
+                incrementBy="1"
+                sequenceName="customer_seq_id"
+                startValue="1"/>
+        <createSequence
+                incrementBy="1"
+                sequenceName="location_seq_id"
+                startValue="1"/>
+        <addForeignKeyConstraint
+                baseColumnNames="customer_id"
+                baseTableName="reservation"
+                constraintName="fk_customer_reservation_customer_id"
+                referencedColumnNames="id"
+                referencedTableName="customer"/>
+        <addForeignKeyConstraint
+                baseColumnNames="book_id"
+                baseTableName="reservation"
+                constraintName="fk_book_reservation_book_id"
+                referencedColumnNames="id"
+                referencedTableName="book"/>
+        <addForeignKeyConstraint
+                baseColumnNames="location_id"
+                baseTableName="book"
+                constraintName="fk_location_book_location_id"
+                referencedColumnNames="id"
+                referencedTableName="location"/>
+        <addUniqueConstraint
+                columnNames="loc_name"
+                constraintName="uq_location_loc_name"
+                tableName="location"/>
+    </changeSet>
+</databaseChangeLog>
