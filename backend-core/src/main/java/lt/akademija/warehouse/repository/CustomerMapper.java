@@ -1,6 +1,5 @@
 package lt.akademija.warehouse.repository;
 
-import lt.akademija.warehouse.api.dto.BaseCustomer;
 import lt.akademija.warehouse.api.dto.Customer;
 import org.apache.ibatis.annotations.*;
 
@@ -44,20 +43,4 @@ public interface CustomerMapper {
             "LIMIT 5")
     List<Customer> getStatisticsByWeight();
 
-
-
-
-
-
-
-
-//
-//    @Delete("DELETE FROM book")
-//    void deleteAllBooks();
-//
-//    @Delete("DELETE FROM reservation")
-//    void deleteAllReservations();
-//
-//    @Delete("DELETE FROM location")
-//    void deleteAllLocations();
 }
