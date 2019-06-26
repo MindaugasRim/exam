@@ -32,7 +32,7 @@
 
 
         </createTable>
-        <createTable tableName="inventory_registration">
+        <createTable tableName="inventory">
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
@@ -40,17 +40,15 @@
                 <constraints nullable="false"/>
             </column>
             <column name="weight" type="int">
+                <constraints nullable="false"/>
             </column>
             <column name="sector_number" type="int">
+                <constraints nullable="false"/>
             </column>
-
             <column name="place_date" type="date">
+                <constraints nullable="false"/>
             </column>
-
-
         </createTable>
-
-
 
         <createTable tableName="book">
             <column name="id" type="int">
@@ -104,6 +102,10 @@
         <createSequence
                 incrementBy="1"
                 sequenceName="customer_seq_id"
+                startValue="1"/>
+        <createSequence
+                incrementBy="1"
+                sequenceName="inventory_seq_id"
                 startValue="1"/>
         <createSequence
                 incrementBy="1"
