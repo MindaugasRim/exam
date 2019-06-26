@@ -27,4 +27,8 @@ public class CustomerService {
         return customerMapper.getAllCustomers();
     }
 
+    public List<Customer> getAllCustomerInformation() {
+        return customerMapper.getAllCustomerInformation();
+    }
+
 }

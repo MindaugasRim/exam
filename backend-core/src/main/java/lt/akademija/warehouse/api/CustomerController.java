@@ -30,4 +30,12 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
+    @GetMapping("/all")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Customer> getAllCustomerInformation() {
+        return customerService.getAllCustomerInformation();
+    }
+
+
+
 }

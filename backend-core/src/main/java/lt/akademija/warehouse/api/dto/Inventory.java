@@ -12,4 +12,5 @@ public class Inventory {
     private int sectorNumber;
     private LocalDate placeDate;
     private int customerId;
+    private int quantity;
 }

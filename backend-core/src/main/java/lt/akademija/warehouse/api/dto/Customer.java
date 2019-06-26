@@ -12,4 +12,5 @@ public class Customer {
     private LocalDate birthDate;
     private int phoneNumber;
     private boolean clientTypeStatus;
+    private int quantity;
 }

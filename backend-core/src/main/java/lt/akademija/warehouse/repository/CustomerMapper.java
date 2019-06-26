@@ -1,5 +1,6 @@
 package lt.akademija.warehouse.repository;
 
+import lt.akademija.warehouse.api.dto.BaseCustomer;
 import lt.akademija.warehouse.api.dto.Customer;
 import org.apache.ibatis.annotations.*;
 
@@ -15,7 +16,12 @@ public interface CustomerMapper {
     @Select("SELECT * FROM customer")
     List<Customer> getAllCustomers();
 
-    @Select("SELECT * FROM customer")
+    @Select("SELECT DISTINCT customer.id, customer.first_name, customer.last_name, customer.client_type_status, customer.birth_date, customer.phone_number, (SELECT count(*) AS quantity\n" +
+            "                             FROM inventory\n" +
+            "                             WHERE customer_id = customer.id) as quantity\n" +
+            "FROM customer\n" +
+            "         LEFT JOIN inventory\n" +
+            "                   ON customer.id = inventory.customer_id")
     List<Customer> getAllCustomerInformation();
 
 //

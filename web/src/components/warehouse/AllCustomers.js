@@ -18,7 +18,27 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import { withStyles } from '@material-ui/core/styles';
 import TableFooter from '@material-ui/core/TableFooter';
 import PropTypes from 'prop-types';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import CalendarToday from '@material-ui/icons/CalendarToday';
+import Select from '@material-ui/core/Select';
+import RecoverIcon from '@material-ui/icons/History';
 import Grid from '@material-ui/core/Grid';
+import EditIcon from '@material-ui/icons/Edit';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import LocationCity from '@material-ui/icons/LocationCity';
+import { Link } from "react-router-dom";
 
 const actionsStyles = theme => ({
   root: {
@@ -48,6 +68,8 @@ class TablePaginationActions extends Component {
     );
   };
 
+
+  
   render() {
     const { classes, count, page, rowsPerPage, theme } = this.props;
      return (
@@ -102,9 +124,10 @@ export class BookList extends Component {
 
   state = {
     books: [],
-    rowsPerPage: 10,
+    rowsPerPage: 5,
     page: 0,
     customers: [],
+    open: false,
   };
 
 
@@ -115,7 +138,7 @@ export class BookList extends Component {
       this.setState({books: res.data})
     });
 
-    axios.get("http://localhost:8080/customers")
+    axios.get("http://localhost:8080/customers/all")
     .then(res => { 
       console.log(res);
       this.setState({customers: res.data})
@@ -140,8 +163,13 @@ export class BookList extends Component {
     this.setState({ page: 0, rowsPerPage: event.target.value });
   };
 
+  handleToggle = () => {
+    this.setState({ open: !this.state.open
+  })
+  }
+
   render() {
-    const { customers, rowsPerPage, page } = this.state;
+    const { customers, rowsPerPage, page, open } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, customers.length - page * rowsPerPage);
 
     return (
@@ -160,27 +188,26 @@ export class BookList extends Component {
                 <TableCell > <p className="ts">Surname </p></TableCell>
                 <TableCell > <p className="ts">Client type </p> </TableCell>
                 <TableCell > <p className="ts">Register Inventor (pcs.) </p> </TableCell>
-                <TableCell > <p className="ts">Taken By </p> </TableCell>
-                <TableCell > <p className="ts">Reservate </p></TableCell>
+                <TableCell > <p className="ts">View customer </p> </TableCell>
               </TableRow>
               
             </TableHead>
          
             <TableBody>
-              {this.state.customers
+            {this.state.customers
 
-             .sort(function (a, b) {         
-              if(a.takenDate === b.takenDate)
-              {
-                  return (a.name - b.name) ? -1 : (a.name - b.name) ? 1 : 0;
-              }
-              else
-              {
-                  return (a.takenDate - b.takenDate) ? -1 : 1;
-              }
-          })
-       
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(customer => (
+.sort(function (a, b) {         
+ if(a.takenDate === b.takenDate)
+ {
+     return (a.name - b.name) ? -1 : (a.name - b.name) ? 1 : 0;
+ }
+ else
+ {
+     return (a.takenDate - b.takenDate) ? -1 : 1;
+ }
+})
+
+ .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(customer => (
                 <TableRow key={customer.id}>
                     <TableCell >
                     {customer.firstName}
@@ -195,8 +222,19 @@ export class BookList extends Component {
                     {"Loyal"} </div>   }
                     </TableCell>
                     <TableCell >
-                    {customer.clientTypeStatus}
+                    {customer.quantity}
                     </TableCell>
+
+                    <TableCell >
+                    <Fab color="primary" aria-label="Add" size="small" onClick={this.handleToggle} >
+                    <EditIcon/>
+          
+
+                    </Fab>
+                    {/* <Link to={'/customers/'+customer.id }>   <EditIcon/> </Link> */}
+
+                    </TableCell>
+
 
                    
                 </TableRow>
@@ -211,7 +249,7 @@ export class BookList extends Component {
             <TableFooter >
                   <TableRow>
                     <TablePagination
-                       rowsPerPageOptions={[10, 20, 50]}
+                       rowsPerPageOptions={[5, 20, 50]}
                        colSpan={6}
                        count={this.state.customers.length}
                        rowsPerPage={rowsPerPage}
@@ -227,9 +265,89 @@ export class BookList extends Component {
                 </TableFooter>
              
           </Table>
-        
-        </Paper>
 
+
+          
+
+          {this.state.customers.map(customer => (
+
+           <Dialog
+              open={open}
+              onClose={this.handleToggle}
+
+              >
+       <DialogTitle id="form-dialog-title"> Client {customer.firstName} {customer.lastName}</DialogTitle>
+        <DialogContent >
+      
+          
+          <div className= "tm0" > 
+          <TableRow  className="ts"> 
+                <TableCell> <p className="ts">Name </p></TableCell>
+                <TableCell > <p className="ts">Surname </p></TableCell>
+                <TableCell > <p className="ts">Birth date </p> </TableCell>
+                <TableCell > <p className="ts">Phone number </p> </TableCell>
+                <TableCell > <p className="ts">Client type </p> </TableCell>
+     
+              </TableRow>
+              <TableRow key={customer.id}>
+                    <TableCell >
+                    {customer.firstName}
+                    </TableCell>
+                    <TableCell >
+                    {customer.lastName}
+                    </TableCell>
+                    <TableCell >
+                    {customer.birthDate}
+                    </TableCell>
+                    <TableCell >
+                    {customer.phoneNumber}
+                    </TableCell>
+                    <TableCell >
+                    {!customer.clientTypeStatus ?  <div > 
+                    {"Casual"} </div >  : 
+                    <div className="bcgr fi"> 
+                    {"Loyal"} </div>   }
+                    </TableCell>
+                  
+
+                </TableRow>
+               
+                <div className="bm80 tm40 ">
+        <ListItem button component={Link} to="/inventory">
+              <ListItemIcon>{ <LocationCity/>}</ListItemIcon>
+              <ListItemText>{ "Press to register new Inventory "}</ListItemText>
+            </ListItem>
+            </div>
+            </div>
+            
+           
+
+            
+
+
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.handleToggle} color="primary">
+            Cancel
+          </Button>
+
+         
+
+         </DialogActions>
+
+    </Dialog> 
+
+    ))}
+        </Paper>
+        <Grid item xs={12} >
+        <div className="hs"> New Customer registration </div> 
+        </Grid>
+        <div className="bm80 ">
+        <ListItem button component={Link} to="/customers">
+              <ListItemIcon>{ <LocationCity/>}</ListItemIcon>
+              <ListItemText>{ "Press to create new customer"}</ListItemText>
+            </ListItem>
+            </div>
       </Container>
    
     )
