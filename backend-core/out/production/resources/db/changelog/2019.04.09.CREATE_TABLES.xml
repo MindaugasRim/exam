@@ -24,13 +24,6 @@
             </column>
             <column defaultValueBoolean="false" name="client_type_status" type="boolean">
             </column>
-
-
-            <!--            <column name="role" type="varchar(255)">-->
-<!--                <constraints nullable="false"/>-->
-<!--            </column>-->
-
-
         </createTable>
         <createTable tableName="inventory">
             <column name="id" type="int">
@@ -53,55 +46,9 @@
             </column>
         </createTable>
 
-        <createTable tableName="book">
-            <column name="id" type="int">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="author" type="varchar(255)">
-            </column>
-            <column name="publication_date" type="date">
-            </column>
-            <column name="location_id" type="int">
-            </column>
-            <column defaultValueBoolean="false" name="deleted_status" type="boolean">
-            </column>
-        </createTable>
-        <createTable tableName="location">
-            <column name="id" type="int">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="loc_name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValueBoolean="false" name="loc_deleted_status" type="boolean">
-            </column>
-        </createTable>
-        <createTable tableName="reservation">
-            <column name="id" type="int">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="customer_id" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="book_id" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="taken_date" type="date">
-            </column>
-            <column name="returned_date" type="date">
-            </column>
-        </createTable>
-        <createSequence
-                incrementBy="1"
-                sequenceName="book_seq_id"
-                startValue="1"/>
-        <createSequence
-                incrementBy="1"
-                sequenceName="reservation_seq_id"
-                startValue="1"/>
+
+
+
         <createSequence
                 incrementBy="1"
                 sequenceName="customer_seq_id"
@@ -110,28 +57,8 @@
                 incrementBy="1"
                 sequenceName="inventory_seq_id"
                 startValue="1"/>
-        <createSequence
-                incrementBy="1"
-                sequenceName="location_seq_id"
-                startValue="1"/>
-        <addForeignKeyConstraint
-                baseColumnNames="customer_id"
-                baseTableName="reservation"
-                constraintName="fk_customer_reservation_customer_id"
-                referencedColumnNames="id"
-                referencedTableName="customer"/>
-        <addForeignKeyConstraint
-                baseColumnNames="book_id"
-                baseTableName="reservation"
-                constraintName="fk_book_reservation_book_id"
-                referencedColumnNames="id"
-                referencedTableName="book"/>
-        <addForeignKeyConstraint
-                baseColumnNames="location_id"
-                baseTableName="book"
-                constraintName="fk_location_book_location_id"
-                referencedColumnNames="id"
-                referencedTableName="location"/>
+
+
         <addForeignKeyConstraint
                 baseColumnNames="customer_id"
                 baseTableName="inventory"
@@ -139,9 +66,6 @@
                 referencedColumnNames="id"
                 referencedTableName="customer"/>
 
-        <addUniqueConstraint
-                columnNames="loc_name"
-                constraintName="uq_location_loc_name"
-                tableName="location"/>
+
     </changeSet>
 </databaseChangeLog>

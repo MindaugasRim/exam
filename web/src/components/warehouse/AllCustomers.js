@@ -123,7 +123,7 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
 export class AllCustomers extends Component {
 
   state = {
-    books: [],
+
     rowsPerPage: 5,
     page: 0,
     customers: [],
@@ -132,11 +132,7 @@ export class AllCustomers extends Component {
 
 
   componentDidMount() {
-    axios.get("http://localhost:8080/books/reservation-info")
-    .then(res => { 
-      console.log(res);
-      this.setState({books: res.data})
-    });
+   
 
     axios.get("http://localhost:8080/customers/all")
     .then(res => { 
@@ -145,15 +141,6 @@ export class AllCustomers extends Component {
     });
     
   }
-
-  // handleReserveBook = (id) => {
-  //   axios.post(`http://localhost:8080/books/${id}/reserve`,  {customerId: 1 })
-  //   .then(res => { 
-  //     console.log(res);
-  //     window.location.reload()
-  //   });
-  };
-
 
   handleChangePage = (event, page) => {
     this.setState({ page });
@@ -231,7 +218,6 @@ export class AllCustomers extends Component {
           
 
                     </Fab>
-                    {/* <Link to={'/customers/'+customer.id }>   <EditIcon/> </Link> */}
 
                     </TableCell>
 
