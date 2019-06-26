@@ -84,7 +84,7 @@ class TemporaryDrawer extends Component {
              <MenuIcon />
              </IconButton>
              <Typography variant="h6" color="inherit" noWrap>
-              Book application
+              Warehouse managament application
             </Typography>    
           </ToolBar>
         </AppBar>

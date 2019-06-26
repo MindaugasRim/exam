@@ -14,6 +14,10 @@ public interface CustomerMapper {
 
     @Select("SELECT * FROM customer")
     List<Customer> getAllCustomers();
+
+    @Select("SELECT * FROM customer")
+    List<Customer> getAllCustomerInformation();
+
 //
 //    @Delete("DELETE FROM book")
 //    void deleteAllBooks();
